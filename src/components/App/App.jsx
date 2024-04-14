@@ -1,34 +1,31 @@
 import { useState } from "react";
 import "modern-normalize";
-import css from "./App.module.css" 
-import allContacts from "../allContacts.json"
-import ContactList from "../ContactList/ContactList.jsx"
-import SearchBox from "../SearchBox/SearchBox.jsx"
-import ContactForm from "../ContactForm/ContactForm.jsx"
-
-
+import css from "./App.module.css";
+import allContacts from "../allContacts.json";
+import ContactList from "../ContactList/ContactList.jsx";
+import SearchBox from "../SearchBox/SearchBox.jsx";
+import ContactForm from "../ContactForm/ContactForm.jsx";
 
 export default function App() {
-
-  const [filter, setFilter] = useState("")
-
   const [contacts, setContacts] = useState(allContacts);
+  const [filter, setFilter] = useState("");
 
-  const addContacts = (newContact)=>{
-setContacts((prevContacts)=> {
-  return [...prevContacts, newContact]
-})
-  }
+  const addContacts = (newContact) => {
+    setContacts((prevContacts) => {
+      return [...prevContacts, newContact];
+    });
+  };
 
-  const filterContacts = contacts.filter((contact) => 
-  contact.name.toLowerCase().includes(filter.toLowerCase()))
-  
+  // const filterContacts = contacts.filter((contact) =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
+
   return (
     <div className={css.container}>
       <h1 className={css.title}>Phonebook</h1>
-      <ContactForm onAdd={addContacts}/>
+      <ContactForm onAdd={addContacts} />
       <SearchBox onFilter={setFilter} value={filter} />
-      <ContactList contacts={filterContacts} />
+      <ContactList contacts={contacts} />
     </div>
   );
 }
