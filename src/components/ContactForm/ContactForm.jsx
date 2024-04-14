@@ -4,18 +4,18 @@ import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
 
 const ContactSchema = Yup.object().shape({
-  contactName: Yup.string()
+  name: Yup.string()
     .min(3, "Too short")
     .max(50, "Max 50 chars!")
     .required("Required"),
-  contactNumber: Yup.string()
+  number: Yup.string()
     .min(3, "Too short")
     .max(50, "Max 50 chars!")
     .required("Required"),
 });
 
 export default function ContactForm({ onAdd }) {
-const contactId = nanoid()
+  const contactId = nanoid();
 
   const handleSabmit = (values, actions) => {
     console.log(values);
@@ -31,7 +31,7 @@ const contactId = nanoid()
       initialValues={{
         name: "",
         number: "",
-        id: "",
+        id: contactId,
       }}
       validationSchema={ContactSchema}
       onSubmit={handleSabmit}
@@ -40,21 +40,13 @@ const contactId = nanoid()
         <div className={css.group}>
           <label htmlFor={contactId}>Name</label>
           <Field className={css.input} id={contactId} name="name" />
-          <ErrorMessage
-            className={css.error}
-            name="name"
-            component="span"
-          />
+          <ErrorMessage className={css.error} name="name" component="span" />
         </div>
 
         <div className={css.group}>
           <label>Number</label>
           <Field className={css.input} name="number" />
-          <ErrorMessage
-            className={css.error}
-            name="number"
-            component="span"
-          />
+          <ErrorMessage className={css.error} name="number" component="span" />
         </div>
         <button type="submit" className={css.button}>
           Add contact
