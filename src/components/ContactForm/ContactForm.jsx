@@ -18,6 +18,7 @@ export default function ContactForm({ onAdd }) {
 const contactId = nanoid()
 
   const handleSabmit = (values, actions) => {
+    console.log(values);
     onAdd({
       ...values,
       id: contactId,
@@ -28,8 +29,9 @@ const contactId = nanoid()
   return (
     <Formik
       initialValues={{
-        contactName: "",
-        contactNumber: "",
+        name: "",
+        number: "",
+        id: "",
       }}
       validationSchema={ContactSchema}
       onSubmit={handleSabmit}
@@ -37,20 +39,20 @@ const contactId = nanoid()
       <Form className={css.form}>
         <div className={css.group}>
           <label htmlFor={contactId}>Name</label>
-          <Field className={css.input} id={contactId} name="contactName" />
+          <Field className={css.input} id={contactId} name="name" />
           <ErrorMessage
             className={css.error}
-            name="contactName"
+            name="name"
             component="span"
           />
         </div>
 
         <div className={css.group}>
           <label>Number</label>
-          <Field className={css.input} name="contactNumber" />
+          <Field className={css.input} name="number" />
           <ErrorMessage
             className={css.error}
-            name="contactNumber"
+            name="number"
             component="span"
           />
         </div>

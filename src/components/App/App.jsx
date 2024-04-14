@@ -12,6 +12,7 @@ export default function App() {
 
   const addContacts = (newContact) => {
     setContacts((prevContacts) => {
+      console.log(prevContacts);
       return [...prevContacts, newContact];
     });
   };
