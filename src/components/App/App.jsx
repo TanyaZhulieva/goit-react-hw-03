@@ -15,15 +15,11 @@ export default function App() {
     return allContacts;
   });
 
+  const [filter, setFilter] = useState("");
+
   useEffect(() => {
     localStorage.setItem("updContacts", JSON.stringify(contacts));
   }, [contacts]);
-
-  const [filter, setFilter] = useState("");
-
-  const deleteContact = (contactId)=>{
-console.log(contactId);
-  }
 
   const addContacts = (newContact) => {
     setContacts((prevContacts) => {
@@ -32,16 +28,22 @@ console.log(contactId);
     });
   };
 
-  // const filterContacts = contacts.filter((contact) =>
-  //   contact.name.toLowerCase().includes(filter.toLowerCase())
-  // );
+  const deleteContact = (contactId)=>{
+    setContacts(prevContacts=> {
+      return prevContacts.filter(contact=> contact.id !== contactId)}
+    )
+      }
+    
+  const filterContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div className={css.container}>
       <h1 className={css.title}>Phonebook</h1>
       <ContactForm onAdd={addContacts} />
       <SearchBox onFilter={setFilter} value={filter} />
-      <ContactList contacts={contacts} onDelete={deleteContact} />
+      <ContactList contacts={filterContacts} onDelete={deleteContact} />
     </div>
   );
 }
