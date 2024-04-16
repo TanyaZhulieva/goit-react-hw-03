@@ -18,7 +18,6 @@ export default function ContactForm({ onAdd }) {
   const contactId = nanoid();
 
   const handleSabmit = (values, actions) => {
-    console.log(values);
     onAdd({
       ...values,
       id: contactId,
@@ -31,7 +30,6 @@ export default function ContactForm({ onAdd }) {
       initialValues={{
         name: "",
         number: "",
-        id: contactId,
       }}
       validationSchema={ContactSchema}
       onSubmit={handleSabmit}
