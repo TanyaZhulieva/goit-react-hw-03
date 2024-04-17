@@ -27,6 +27,7 @@ export default function App() {
     });
   };
 
+
   const deleteContact = (contactId)=>{
     setContacts(prevContacts=> {
       return prevContacts.filter(contact=> contact.id !== contactId)}
@@ -36,6 +37,8 @@ export default function App() {
   const filterContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+
+  console.log(filterContacts);
 
   return (
     <div className={css.container}>

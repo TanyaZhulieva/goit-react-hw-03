@@ -20,7 +20,7 @@ export default function ContactForm({ onAdd }) {
   const handleSabmit = (values, actions) => {
     onAdd({
       ...values,
-      id: contactId,
+      id: nanoid(),
     });
     actions.resetForm();
   };
